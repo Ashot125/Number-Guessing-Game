@@ -72,7 +72,7 @@ function game() {
       break;
     }
 
-    attempts++;
+   
   }
 
   if (attempts === 10&& guessedNumbers[guessedNumbers.length - 1] !== secretNumber) {
