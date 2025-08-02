@@ -53,7 +53,7 @@ function checkGuess(guess, correctNumber) {
 
 // --- Main Game Function ---
 function calculateScore(attemptsUsed) {
-    return Math.max(0, 11 - (attemptsUsed ) * 10;
+    return Math.max(0, 11 - (attemptsUsed ) * 10);
 }
 
 // --- GAME LOGIC ---
@@ -94,6 +94,5 @@ function game() {
         }
     }
 }
-
 // === Start the game ===
 game();
