@@ -1,3 +1,11 @@
+ alert(" Welcome to the Codebreaker Challenge!\n\n" +
+"The Evil AI has locked the digital core of the planet with a secret shutdown code.\n\n" +
+"Your mission is to guess the secret code before the AI takes over the world.\n\n" +
+"You have 10 attempts to guess the correct number between 1 and 100.\n\n" +
+"Fail and the AI takes over the world!\n\nLet the mind games begin!");
+
+ 
+ 
  function generateRandomNumber (min,max) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
