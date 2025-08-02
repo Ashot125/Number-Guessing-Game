@@ -28,12 +28,14 @@ function generateRandomNumber() {
 function getPlayerGuess(attempt) {
     while (true) {
         const input = prompt(`Attempt ${attempt}/10: Enter a number between 1 and 100:`);
+      
         if (input === null) {
             const giveUp = confirm("Are you sure you want to give up? The AI will take over the world if you do.");
             if (giveUp) return null; // Player chose to give up
             else continue;
         }
         const guess = parseInt(input.trim());
+      
         if (!isNaN(guess) && guess >= 1 && guess <= 100) {
             return guess;
         } else {
@@ -43,17 +45,15 @@ function getPlayerGuess(attempt) {
 }
 
 // --- Check the Guess ---
-function checkGuess(guess, target) {
-    if (guess < target) return " Too low! The AI laughs at your feeble attempt.";
-    if (guess > target) return " Too high! The AI smirks at your misguided guess.";
-        return "Direct hit! You have cracked the code!";
+function checkGuess(guess, correctNumber) {
+    if (guess < correctNumber) return " Too low! The AI laughs at your feeble attempt.";
+    if (guess > correctNumber) return " Too high! The AI smirks at your misguided guess.";
+        return "Correct! You have cracked the code!";
 }
 
 // --- Main Game Function ---
 function calculateScore(attemptsUsed) {
-    return Math.max(0, 11 - (attemptsUsed ) * 10); // Calculates score based on attempts used
-    // The fewer attempts used, the higher the score
-    // Maximum score is 100, minimum is 0
+    return Math.max(0, 11 - (attemptsUsed ) * 10;
 }
 
 // --- GAME LOGIC ---
@@ -62,7 +62,9 @@ function game() {
     let attempts = 0;
     const maxAttempts = 10;
 
-    console.log(" Mission started! The AI is on high alert. You have 10 rounds to guess the secret code.");
+    console.log("Mission started...");
+    console.log("The Evil AI has hidden a shutdown number between 1 and 100.");
+    console.log("Crack it within 10 attempts to save the world!");
 
     while (attempts < maxAttempts) {
         attempts++;
@@ -74,10 +76,9 @@ function game() {
         }
 
         const feedback= checkGuess(guess, secretNumber);
-        console.log(`Round ${attempts}: You guessed ${guess} - ${guess} - ${feedback}`);
+        console.log(`Attempt ${attempts}: You guessed ${guess} - ${guess} - ${feedback}`);
 
-        if (feedback === "Target!") {
-            guessedCorrectly = true;
+        if (feedback === "Correct!") {
             const score = Math.max(0, (11 - attempts)* 10); // 100 max
             console.log("ACCESS GRANTED! Code matched. AI core neutralized.");
             console.log(`Final Score; ${score} points`);
@@ -87,7 +88,6 @@ function game() {
         }
 
         // GAME RESULTS 
-        if (attempts === maxAttempts) {
             console.log(`Mission Failed. The correct code was ${secretNumber}.`);
             console.log("You used all 10 attempts.");
             console.log("The AI takes over the world. You lose!");
