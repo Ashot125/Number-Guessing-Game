@@ -4,8 +4,6 @@
 "You have 10 attempts to guess the correct number between 1 and 100.\n\n" +
 "Fail and the AI takes over the world!\n\nLet the mind games begin!");
 
- 
- 
  function generateRandomNumber (min,max) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
@@ -13,32 +11,34 @@
 
 };
 
-
 function getPlayerGuess() {
     let guess;
-    do{
+    do {
         let input = prompt("Enter a number between 1 and 100:");
-        if(input ===null){
+        if (input === null) {
             alert("GAME CANCELLED.");
             return null;
         }
 
+        if (input.trim() === "") {
+            alert("Input cannot be empty. Please enter a number.");
+            continue;
+        }
 
-        if (input.trim() === "") { 
-        alert("Input cannot be empty. Please enter a number.");
-        continue; 
-       }
+        guess = parseInt(input);
 
-        guess =parseInt(input);
-    } while (isNaN(guess) || guess < 1 || guess > 100)
-  
+        if (isNaN(guess)) {
+            alert("That's not a number! Please enter a valid number between 1 and 100.");
+            guess = undefined;
+        } else if (guess < 1 || guess > 100) {
+            alert("Number must be between 1 and 100.");
+            guess = undefined;
+        }
 
+    } while (guess === undefined);
 
   return guess;
 }
-
-
-
   
 function game() {
   let secretNumber = generateRandomNumber(1, 100);
@@ -66,10 +66,6 @@ function game() {
     guessedNumbers.push(guess);
     attempts++;
 
-
-
-   
-
     if (guess < secretNumber) {
       alert("Too low, try again!");
     } else if (guess > secretNumber) {
@@ -80,7 +76,6 @@ function game() {
       break;
     }
 
-   
   }
 
   if (attempts === 10&& guessedNumbers[guessedNumbers.length - 1] !== secretNumber) {
@@ -92,10 +87,6 @@ function game() {
 
 }
 
-
-
 do {
   game();
 } while (confirm("Do you want to play again?"));
-
-
